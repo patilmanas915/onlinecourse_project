@@ -1,0 +1,8 @@
+<h2>Congratulations! You passed</h2>
+<h3>Score: {{ score }}%</h3>
+
+<ul>
+{% for choice in choices %}
+    <li>{{ choice.choice_text }} - {% if choice.is_correct %}Correct{% else %}Wrong{% endif %}</li>
+{% endfor %}
+</ul>

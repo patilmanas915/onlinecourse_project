@@ -20,5 +20,8 @@ def show_exam_result(request, submission_id):
 
     score = (correct / total) * 100 if total > 0 else 0
 
-    return render(request, 'result.html', {'score': score})
+    return render(request, 'exam_result_bootstrap.html', {
+        'score': score,
+        'choices': choices
+    })
 
