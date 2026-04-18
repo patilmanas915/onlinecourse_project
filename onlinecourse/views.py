@@ -15,13 +15,15 @@ def show_exam_result(request, submission_id):
     submission = Submission.objects.get(id=submission_id)
     choices = submission.choices.all()
 
-    correct = sum([1 for c in choices if c.is_correct])
-    total = choices.count()
+    total_questions = len(choices)
+    correct_answers = sum([1 for c in choices if c.is_correct])
 
-    score = (correct / total) * 100 if total > 0 else 0
+    score = (correct_answers / total_questions) * 100 if total_questions > 0 else 0
 
     return render(request, 'exam_result_bootstrap.html', {
         'score': score,
-        'choices': choices
+        'choices': choices,
+        'total': total_questions,
+        'correct': correct_answers
     })
 
